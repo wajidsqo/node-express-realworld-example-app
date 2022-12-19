@@ -1,0 +1,21 @@
+version: 0.2
+
+run-as: root
+
+env:
+        parameter-store:
+                mongo_url: "wajid"
+
+phases:
+        pre_build:
+                commands:
+                        - npm install
+                        
+        build:
+                commands:
+                        - sed -i "s|mongodb://localhost/conduit|$mongo_url|" app.js
+                        - cat app.js
+artifacts:
+        files:
+                - '**/*'
+                - echo "Build Artifacts created successfully"
