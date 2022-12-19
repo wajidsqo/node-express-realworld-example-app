@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+runas: root
+
+files:
+  - source: /
+    destination: /home/ubuntu/node-express-realworld-example-app
+    overwrite: true
+    timeout: 500
+
+hooks:
+  ApplicationStop:
+    - location: script/stop.sh
+      timeout: 300
+      runas: root
+
+
+  ApplicationStart:
+    - location: script/start.sh
+      timeout: 300
+      runas: root
